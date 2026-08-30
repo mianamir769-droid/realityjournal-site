@@ -6,15 +6,17 @@ import verifiedImageSlugs from './verifiedImages.json' with { type: 'json' };
 const POSTS_DIR = path.join(process.cwd(), 'src', 'content', 'posts');
 const VERIFIED_IMAGE_SLUGS = new Set(verifiedImageSlugs);
 
-export function getAllPostSlugs() {
-  if (!fs.existsSync(POSTS_DIR)) return [];
-  return fs
-    .readdirSync(POSTS_DIR)
-    .filter((f) => f.endsWith('.json'))
-    .map((f) => f.replace(/\.json$/, ''));
+// A WordPress export carries every post, not just the live ones: this one
+// held 24 drafts and 15 pending posts alongside the 458 published. Nothing
+// downstream looked at `status`, so unfinished drafts were being built as
+// real pages and listed in the sitemap. Published-only is the only safe
+// default - the drafts stay in src/content/posts/ so they can be finished
+// and flipped to "publish" later.
+function isPublished(post) {
+  return post && post.status === 'publish';
 }
 
-export function getPostBySlug(slug) {
+function readPostFile(slug) {
   const file = path.join(POSTS_DIR, `${slug}.json`);
   if (!fs.existsSync(file)) return null;
   const post = JSON.parse(fs.readFileSync(file, 'utf-8'));
@@ -25,17 +27,31 @@ export function getPostBySlug(slug) {
   return post;
 }
 
+export function getPostBySlug(slug) {
+  const post = readPostFile(slug);
+  return isPublished(post) ? post : null;
+}
+
 // Memoized: with 1000+ posts, getStaticProps runs once per page across a
 // handful of worker processes, and each worker would otherwise re-read
 // every post file for every page it builds.
 let allPostsCache = null;
 export function getAllPosts() {
   if (allPostsCache) return allPostsCache;
-  allPostsCache = getAllPostSlugs()
-    .map((slug) => getPostBySlug(slug))
-    .filter(Boolean)
+  const slugs = fs.existsSync(POSTS_DIR)
+    ? fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, ''))
+    : [];
+  allPostsCache = slugs
+    .map((slug) => readPostFile(slug))
+    .filter(isPublished)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
   return allPostsCache;
+}
+
+// Drives getStaticPaths, so this is what actually decides which post pages
+// get built. Derived from getAllPosts() so it inherits the published filter.
+export function getAllPostSlugs() {
+  return getAllPosts().map((p) => p.slug);
 }
 
 // Aggregate categories/tags across all posts for the sidebar's Categories
