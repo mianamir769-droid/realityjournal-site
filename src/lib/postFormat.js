@@ -44,10 +44,15 @@ export function primaryCategory(categories) {
 }
 
 // "Digital Marketing" -> "digital-marketing". Used for /category/<slug> URLs.
+//
+// "&" is dropped rather than expanded to "and", because that is what
+// WordPress's own sanitize_title does and these URLs already exist: the live
+// site serves /category/luck-astronomy/, so expanding would have published
+// /category/luck-and-astronomy/ and orphaned the real one.
 export function categorySlug(name) {
   return String(name || '')
     .toLowerCase()
-    .replace(/&/g, ' and ')
+    .replace(/&/g, ' ')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
 }

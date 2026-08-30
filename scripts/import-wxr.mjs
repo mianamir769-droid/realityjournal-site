@@ -54,6 +54,35 @@ function asText(v) {
   return String(v);
 }
 
+// The named entities WordPress actually puts in titles and term names, plus
+// numeric escapes. Deliberately not a general HTML decoder: this runs on
+// plain-text fields (titles, categories, tags), never on post bodies, where
+// an entity is markup and must survive untouched.
+const NAMED_ENTITIES = {
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ',
+  ndash: '–', mdash: '—', hellip: '…',
+  lsquo: '‘', rsquo: '’', ldquo: '“', rdquo: '”',
+};
+function decodeEntities(text) {
+  let out = String(text || '');
+  // Repeat: WordPress double-encodes some titles ("&amp;amp;").
+  for (let i = 0; i < 3; i++) {
+    const next = out.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (whole, body) => {
+      if (body[0] === '#') {
+        const code = body[1] === 'x' || body[1] === 'X'
+          ? parseInt(body.slice(2), 16)
+          : parseInt(body.slice(1), 10);
+        return Number.isFinite(code) && code > 0 ? String.fromCodePoint(code) : whole;
+      }
+      const named = NAMED_ENTITIES[body.toLowerCase()];
+      return named === undefined ? whole : named;
+    });
+    if (next === out) break;
+    out = next;
+  }
+  return out;
+}
+
 // Convert `[caption id="..." align="..." width="123"]<img ...> Caption text[/caption]`
 // into `<figure class="wp-caption"><img ... />Caption text</figure>`, same as
 // WordPress's img_caption_shortcode handler.
@@ -161,21 +190,29 @@ for (const item of items) {
   let slug = slugify(rawSlug);
   if (!slug) slug = slugify(asText(item.title)) || `post-${asText(item['wp:post_id'])}`;
 
+  // WordPress stores titles and term names with HTML entities already in
+  // them ("Repair &amp; Installation"), and the XML parser hands that back
+  // verbatim because it was inside CDATA. Rendering it as-is prints the raw
+  // entity on the page, so it is decoded once here, at the boundary.
   const categories = [];
   const tags = [];
   for (const cat of toArray(item.category)) {
     const domain = cat?.['@_domain'];
     const name = asText(cat);
     if (!name) continue;
-    if (domain === 'post_tag') tags.push(name);
-    else categories.push(name);
+    if (domain === 'post_tag') tags.push(decodeEntities(name));
+    // Anything else WordPress files under <category> - post_format ("Image",
+    // "Aside", "Quote", "Link"), nav_menu, wp_theme - is machinery, not a
+    // topic. Treating it as one produces category pages the old site never
+    // had, carrying one or two posts each.
+    else if (domain === 'category') categories.push(decodeEntities(name));
   }
 
   const rawContent = asText(item['content:encoded']);
 
   posts.push({
     slug,
-    title: asText(item.title),
+    title: decodeEntities(asText(item.title)),
     status,
     date: asText(item['wp:post_date']) || asText(item.pubDate),
     author: asText(item['dc:creator']),
