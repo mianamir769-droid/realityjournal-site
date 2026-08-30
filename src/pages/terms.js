@@ -61,7 +61,7 @@ export default function Terms() {
       <p className="text-700 m-0 fs-18">
         If you subscribe to our newsletter, you agree to receive emails from us at the address you provide. You can unsubscribe at any
         time using the link in any email we send. How we handle your address is described in our{" "}
-        <a href="/privacy-policy" className="text-linear">
+        <a href="/privacy-policy/" className="text-linear">
           Privacy Policy
         </a>
         .

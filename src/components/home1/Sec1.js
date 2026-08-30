@@ -66,7 +66,7 @@ export default function Sec1({ posts }) {
                 style="style-1"
                 linkAuthor="#"
                 linkCategory={categoryHref(primaryCategory(post.categories))}
-                linkPost={`/${post.slug}`}
+                linkPost={`/${post.slug}/`}
                 img={post.img}
                 author={post.author}
                 category={primaryCategory(post.categories)}

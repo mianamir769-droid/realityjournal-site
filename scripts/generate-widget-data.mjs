@@ -49,7 +49,7 @@ const posts = [...withImage, ...withoutImage];
 function toCard(p) {
   return {
     img: verifiedSlugs.has(p.slug) ? extractFirstImage(p.contentHtml) : null,
-    linkPost: `/${p.slug}`,
+    linkPost: `/${p.slug}/`,
     category: primaryCategory(p.categories),
     title: p.title,
     date: formatDate(p.date),

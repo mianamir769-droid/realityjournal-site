@@ -17,7 +17,7 @@ export default function About({ postCount, categories }) {
       <ul className="list-unstyled d-flex flex-wrap gap-2 ps-0 mb-0">
         {categories.map((cat) => (
           <li key={cat.slug} className="mx-0">
-            <a href={`/category/${cat.slug}`} className="tag-item link-effect-2">
+            <a href={`/category/${cat.slug}/`} className="tag-item link-effect-2">
               <span className="text">
                 <span className="text1">
                   {cat.name} ({cat.count})
@@ -38,7 +38,7 @@ export default function About({ postCount, categories }) {
           {CONTACT_EMAIL}
         </a>{" "}
         or use the{" "}
-        <a href="/contact" className="text-linear">
+        <a href="/contact/" className="text-linear">
           contact page
         </a>
         .

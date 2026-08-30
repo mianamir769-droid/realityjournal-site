@@ -29,7 +29,7 @@ export default function CategoriesIndex({ categories }) {
                   classList="col-lg-3 col-sm-4 col-6"
                   img={cat.img}
                   category={`${cat.name} (${cat.count})`}
-                  linkpage_category={`/category/${cat.slug}`}
+                  linkpage_category={`/category/${cat.slug}/`}
                 />
               ))}
             </div>

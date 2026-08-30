@@ -30,7 +30,7 @@ export default function Sec5({ posts }) {
             <ArticleCard4
               key={post.slug}
               classList="col-lg-3 col-md-6 col-12"
-              linkPost={`/${post.slug}`}
+              linkPost={`/${post.slug}/`}
               linkAuthor="#"
               img={post.img}
               title={post.title}

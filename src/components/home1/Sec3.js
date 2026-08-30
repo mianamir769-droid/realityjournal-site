@@ -23,7 +23,7 @@ export default function Sec3({ writtenLately, mostComments, secondRow }) {
                     key={post.slug}
                     className={`avatar avatar-64 rounded-circle overflow-hidden border-4 border-white z-${i + 1} hover-up`}
                   >
-                    <a href={`/${post.slug}`}>
+                    <a href={`/${post.slug}/`}>
                       <AuthorAvatar name={post.author} size={64} />
                     </a>
                   </div>
@@ -40,7 +40,7 @@ export default function Sec3({ writtenLately, mostComments, secondRow }) {
             <ArticleCard2
               key={post.slug}
               classList="col-lg-4 col-md-6 col-12"
-              linkPost={`/${post.slug}`}
+              linkPost={`/${post.slug}/`}
               linkAuthor="#"
               linkCategory={categoryHref(primaryCategory(post.categories))}
               category={primaryCategory(post.categories)}
@@ -60,7 +60,7 @@ export default function Sec3({ writtenLately, mostComments, secondRow }) {
                   key={post.slug}
                   classList="swiper-slide"
                   style="style-3"
-                  linkPost={`/${post.slug}`}
+                  linkPost={`/${post.slug}/`}
                   linkCategory={categoryHref(primaryCategory(post.categories))}
                   category={primaryCategory(post.categories)}
                   img={post.img}
@@ -74,7 +74,7 @@ export default function Sec3({ writtenLately, mostComments, secondRow }) {
             <ArticleCard2
               key={post.slug}
               classList="col-lg-4 col-md-6 col-12"
-              linkPost={`/${post.slug}`}
+              linkPost={`/${post.slug}/`}
               linkAuthor="#"
               linkCategory={categoryHref(primaryCategory(post.categories))}
               category={primaryCategory(post.categories)}

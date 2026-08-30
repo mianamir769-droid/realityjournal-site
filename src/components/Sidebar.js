@@ -45,22 +45,22 @@ export default function Sidebar() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mb-2" href="/latest">
+            <a className="nav-link mb-2" href="/latest/">
               Latest
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mb-2" href="/category">
+            <a className="nav-link mb-2" href="/category/">
               Categories
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mb-2" href="/about">
+            <a className="nav-link mb-2" href="/about/">
               About
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mb-2" href="/contact">
+            <a className="nav-link mb-2" href="/contact/">
               Contact
             </a>
           </li>

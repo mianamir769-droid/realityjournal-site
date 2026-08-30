@@ -14,7 +14,11 @@ export default function Seo({ title, description, path = "/", canonical, noindex
   const fullTitle = title === SITE_NAME || alreadyBranded ? title : `${title} | ${SITE_NAME}`;
   // A canonical carried over from Rank Math wins - a handful of posts point
   // at a different URL on purpose, and overriding that would undo it.
-  const url = canonical || `${SITE_URL}${path === "/" ? "" : path}`;
+  // Canonicals have to carry the trailing slash the site is actually served
+  // on (see trailingSlash in next.config.mjs), or every page would name a URL
+  // that redirects to the real one.
+  const withSlash = path.endsWith("/") ? path : `${path}/`;
+  const url = canonical || `${SITE_URL}${withSlash}`;
 
   return (
     <Head>

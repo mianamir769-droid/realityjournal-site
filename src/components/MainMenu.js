@@ -14,22 +14,22 @@ export default function MainMenu() {
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link link-effect-1 " href="/latest">
+        <a className="nav-link link-effect-1 " href="/latest/">
           <span>Latest</span>
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link link-effect-1 " href="/category">
+        <a className="nav-link link-effect-1 " href="/category/">
           <span>Categories</span>
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link link-effect-1 " href="/about">
+        <a className="nav-link link-effect-1 " href="/about/">
           <span>About</span>
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link link-effect-1 " href="/contact">
+        <a className="nav-link link-effect-1 " href="/contact/">
           <span>Contact</span>
         </a>
       </li>

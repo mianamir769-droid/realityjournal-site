@@ -21,7 +21,7 @@ export default function Sec2({ categories }) {
               classList="col-lg-2 col-sm-4 col-6"
               img={cat.img}
               category={cat.name}
-              linkpage_category={`/category/${categorySlug(cat.name)}`}
+              linkpage_category={`/category/${categorySlug(cat.name)}/`}
             />
           ))}
         </div>

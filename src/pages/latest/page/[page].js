@@ -1,7 +1,7 @@
 import PostArchive from "@/components/PostArchive";
 import { getAllPosts, paginate, POSTS_PER_PAGE } from "@/lib/posts";
 
-const latestHref = (p) => (p === 1 ? "/latest" : `/latest/page/${p}`);
+const latestHref = (p) => (p === 1 ? "/latest/" : `/latest/page/${p}/`);
 
 export default function LatestPage({ posts, page, totalPages, totalPosts }) {
   return (

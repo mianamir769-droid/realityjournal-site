@@ -13,7 +13,7 @@ export default function BlogPost({ post, relatedPosts, categoryItems, tags }) {
       <Seo
         title={post.seoTitle || post.title}
         description={post.metaDescription}
-        path={`/${post.slug}`}
+        path={`/${post.slug}/`}
         canonical={post.canonicalUrl || undefined}
         noindex={post.noindex}
         image={post.coverImage || undefined}

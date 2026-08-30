@@ -54,7 +54,7 @@ export default function PostArchive({ title, subtitle, posts, page, totalPages, 
                   <ArticleCard4
                     key={post.slug}
                     classList="col-lg-3 col-md-6 col-12"
-                    linkPost={`/${post.slug}`}
+                    linkPost={`/${post.slug}/`}
                     linkAuthor={categoryHref(primaryCategory(post.categories))}
                     img={post.img}
                     title={post.title}

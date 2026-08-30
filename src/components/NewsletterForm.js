@@ -109,7 +109,7 @@ export default function NewsletterForm({ buttonClass = "btn btn-linear button-ef
         <input className="form-check-input" type="checkbox" id="subscribe-consent" required />
         <label className="form-check-label" htmlFor="subscribe-consent">
           You have read and agreed to the{" "}
-          <a href="/privacy-policy" className="text-linear">
+          <a href="/privacy-policy/" className="text-linear">
             Privacy Policy
           </a>
         </label>

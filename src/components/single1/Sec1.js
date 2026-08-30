@@ -67,7 +67,7 @@ export default function Sec1({ post, relatedPosts, categoryItems, tags }) {
                           classList="border-bottom"
                           style="style-4"
                           linkCategory={categoryHref(primaryCategory(item.categories))}
-                          linkPost={`/${item.slug}`}
+                          linkPost={`/${item.slug}/`}
                           category={primaryCategory(item.categories)}
                           img={item.img}
                           title={item.title}

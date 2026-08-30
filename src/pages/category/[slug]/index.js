@@ -11,7 +11,7 @@ export default function CategoryIndex({ category, posts, page, totalPages, total
       page={page}
       totalPages={totalPages}
       totalPosts={totalPosts}
-      hrefFor={(p) => (p === 1 ? `/category/${category.slug}` : `/category/${category.slug}/page/${p}`)}
+      hrefFor={(p) => (p === 1 ? `/category/${category.slug}/` : `/category/${category.slug}/page/${p}/`)}
     />
   );
 }

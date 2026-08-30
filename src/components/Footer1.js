@@ -64,13 +64,13 @@ export default function Footer1() {
                         has no articles for). */}
                     {footerCategories.map((cat) => (
                       <li className="mb-3" key={cat.slug}>
-                        <a className="text-500 hover-dark button-effect-1" href={`/category/${cat.slug}`}>
+                        <a className="text-500 hover-dark button-effect-1" href={`/category/${cat.slug}/`}>
                           {cat.name}
                         </a>
                       </li>
                     ))}
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/category">
+                      <a className="text-500 hover-dark button-effect-1" href="/category/">
                         All categories
                       </a>
                     </li>
@@ -80,22 +80,22 @@ export default function Footer1() {
                   <h6 className="mb-3">Site</h6>
                   <ul className="list-unstyled ps-0">
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/about">
+                      <a className="text-500 hover-dark button-effect-1" href="/about/">
                         About
                       </a>
                     </li>
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/latest">
+                      <a className="text-500 hover-dark button-effect-1" href="/latest/">
                         Latest articles
                       </a>
                     </li>
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/contact">
+                      <a className="text-500 hover-dark button-effect-1" href="/contact/">
                         Write for us
                       </a>
                     </li>
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/contact">
+                      <a className="text-500 hover-dark button-effect-1" href="/contact/">
                         Contact
                       </a>
                     </li>
@@ -105,12 +105,12 @@ export default function Footer1() {
                   <h6 className="mb-3">Policy</h6>
                   <ul className="list-unstyled ps-0">
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/privacy-policy">
+                      <a className="text-500 hover-dark button-effect-1" href="/privacy-policy/">
                         Privacy policy
                       </a>
                     </li>
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/terms">
+                      <a className="text-500 hover-dark button-effect-1" href="/terms/">
                         Terms &amp; Conditions
                       </a>
                     </li>
@@ -120,7 +120,7 @@ export default function Footer1() {
                       </a>
                     </li>
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/contact">
+                      <a className="text-500 hover-dark button-effect-1" href="/contact/">
                         Advertise
                       </a>
                     </li>

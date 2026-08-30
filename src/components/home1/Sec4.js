@@ -81,7 +81,7 @@ export default function Sec4({ authorName, authorCount, posts }) {
                   <ArticleCard5
                     key={post.slug}
                     classList="col-12"
-                    linkPost={`/${post.slug}`}
+                    linkPost={`/${post.slug}/`}
                     linkCategory={categoryHref(primaryCategory(post.categories))}
                     category={primaryCategory(post.categories)}
                     img={post.img}

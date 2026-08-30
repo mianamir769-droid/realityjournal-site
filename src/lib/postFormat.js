@@ -56,5 +56,5 @@ export function categorySlug(name) {
 // link to (a post whose only category was "Uncategorized").
 export function categoryHref(name) {
   if (!name || name.toLowerCase() === 'uncategorized' || name === 'Blog') return '#';
-  return `/category/${categorySlug(name)}`;
+  return `/category/${categorySlug(name)}/`;
 }

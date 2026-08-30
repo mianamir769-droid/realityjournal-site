@@ -30,7 +30,7 @@ export default function Sec6({ featured, items }) {
           {featured && (
             <ArticleCard7
               classList="col-lg-6 col-12"
-              linkPost={`/${featured.slug}`}
+              linkPost={`/${featured.slug}/`}
               linkCategory={categoryHref(primaryCategory(featured.categories))}
               category={primaryCategory(featured.categories)}
               img={featured.img}
@@ -47,7 +47,7 @@ export default function Sec6({ featured, items }) {
                 <ArticleCard6
                   key={post.slug}
                   classList="col-md-6 col-12"
-                  linkPost={`/${post.slug}`}
+                  linkPost={`/${post.slug}/`}
                   linkCategory={categoryHref(primaryCategory(post.categories))}
                   category={primaryCategory(post.categories)}
                   img={post.img}
