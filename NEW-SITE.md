@@ -41,7 +41,7 @@ Paste the block at the bottom into a **new chat** to kick one off.
 
 ## Changing the colours
 
-Two steps, and that is genuinely all.
+Three steps, and that is genuinely all.
 
 **1.** Edit the four brand variables at the top of
 `src/styles/elora/utils/_colors.scss`:
@@ -62,6 +62,19 @@ node scripts/generate-favicon.mjs
 That rewrites the favicon and retints the brand-gradient icons — the only
 files that need a literal hex, because a browser loads them standalone and
 they cannot read CSS variables.
+
+**3.** Run:
+
+```
+node scripts/retint-backgrounds.mjs
+```
+
+That rotates the four decorative watercolour backgrounds the homepage uses
+(`bg-home1-sec{1,3,4,7}.webp`) onto the new brand hue. They are raster theme
+artwork, so they cannot read CSS variables either, and the stock files are a
+warm peach wash that only looks right on a pink/orange brand. Pristine copies
+are kept in `public/assets/imgs/page/.orig/` and are always used as the input,
+so the script is safe to re-run after another palette change.
 
 Everything else follows automatically: logo, buttons, links, badges, hover
 states, headings, underlines, the checkmark icon. There are no brand hex
