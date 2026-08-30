@@ -33,10 +33,15 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link
-          rel="shortcut icon"
+          rel="icon"
           type="image/svg+xml"
           href="/assets/imgs/template/logo/favicon.svg"
         />
+        {/* Fallback for anything that will not take an SVG icon. Browsers
+            request /favicon.ico by path whether it is linked or not, so it is
+            generated too rather than left as the Next.js default. */}
+        <link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         {/* Libs CSS - loaded exactly as in the original Elora theme */}
         <link rel="stylesheet" href="/assets/css/vendors/bootstrap-grid.min.css" />
