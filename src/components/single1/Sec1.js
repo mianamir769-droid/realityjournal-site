@@ -22,7 +22,11 @@ export default function Sec1({ post, relatedPosts, categoryItems, tags }) {
               <a href={categoryHref(category)} className="categories style-2 fs-7 mb-3 bg-100 text-dark">
                 {category}
               </a>
-              <h3 className="card-title mb-0">{post.title}</h3>
+              {/* The article headline is the page's h1. It was an h3 in the
+                  Elora template, which left every post page without one. The
+                  class carries the visual size, so the level change is purely
+                  semantic. */}
+              <h1 className="card-title mb-0">{post.title}</h1>
               <div className="border-bottom pb-3 mt-3"></div>
               <div className="d-flex flex-md-nowrap flex-wrap align-items-center gap-3 justify-content-between mb-4 pt-3">
                 <div className="mt-auto d-flex flex-wrap align-items-center gap-2">

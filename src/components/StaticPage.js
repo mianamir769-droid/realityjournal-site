@@ -5,10 +5,14 @@ import Sec7 from "@/components/home1/Sec7";
 
 // Shell for the plain content pages (about, contact, privacy, terms):
 // interior header, breadcrumb, a readable single column, newsletter footer.
-export default function StaticPage({ title, intro, updated, path = "/", children, showNewsletter = true }) {
+// `intro` is the visible lead paragraph. `description` is what goes in the
+// meta tag, and defaults to the intro - they only differ on imported pages,
+// whose meta description is an excerpt of the body and would read as a
+// duplicate if it were also printed above it.
+export default function StaticPage({ title, intro, description, updated, path = "/", children, showNewsletter = true, noindex = false, breadcrumbs, schemaType }) {
   return (
     <>
-      <Seo title={title} description={intro} path={path} />
+      <Seo title={title} description={description || intro} path={path} noindex={noindex} breadcrumbs={breadcrumbs} schemaType={schemaType} />
       <Layout header={2}>
         <Breadcrumb position="start" pageCurrent={title} sub="" pageSubCurrent="" />
         <section className="pb-80 overflow-hidden">

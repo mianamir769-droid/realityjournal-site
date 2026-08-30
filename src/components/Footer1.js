@@ -90,7 +90,7 @@ export default function Footer1() {
                       </a>
                     </li>
                     <li className="mb-3">
-                      <a className="text-500 hover-dark button-effect-1" href="/contact/">
+                      <a className="text-500 hover-dark button-effect-1" href="/write-for-us/">
                         Write for us
                       </a>
                     </li>

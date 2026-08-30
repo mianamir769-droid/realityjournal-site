@@ -10,14 +10,20 @@ import verifiedImageSlugs from "@/lib/verifiedImages.json";
 export default function CategoriesIndex({ categories }) {
   return (
     <>
-      <Seo title="Categories" description="Browse every topic covered on the site." path="/category" />
+      <Seo
+        title="Categories"
+        description="Browse every topic covered on the site."
+        path="/category/"
+        schemaType="collection"
+        breadcrumbs={[{ name: "Home", url: "/" }, { name: "Categories", url: "/category/" }]}
+      />
       <Layout header={2}>
         <Breadcrumb position="start" pageCurrent="Categories" sub="" pageSubCurrent="" />
         <section className="pb-80 overflow-hidden">
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h2 className="ds-5 mb-0">Categories</h2>
+                <h1 className="ds-5 mb-0">Categories</h1>
                 <p className="mt-1 mb-0">Browse every topic on the site</p>
                 <div className="border-bottom pt-3"></div>
               </div>

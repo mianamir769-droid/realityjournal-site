@@ -1,13 +1,6 @@
 {
   "spotlight": [
     {
-      "img": "https://scriptzol.wordpress.com/wp-content/uploads/2025/06/ed451-1fzr2byigdinluzyapoebhq.jpeg",
-      "linkPost": "/real-estate-agencies-winning-with-scriptzol/",
-      "category": "Business",
-      "title": "Real Estate Agencies Winning With Scriptzol",
-      "date": "Jun 12, 2025"
-    },
-    {
       "img": "https://frankfurt.apollo.olxcdn.com/v1/files/handctalsr5u-KZ/image;s=2000x1208",
       "linkPost": "/7-hidden-costs-that-are-killing-your-profit-margins/",
       "category": "Business",
@@ -27,16 +20,16 @@
       "category": "Lifestyle",
       "title": "Japanese and Korean Skincare Routine",
       "date": "Apr 7, 2025"
-    }
-  ],
-  "trending": [
+    },
     {
       "img": "https://i.pinimg.com/originals/0b/b7/83/0bb7837c38e97d42a7f5acb08eeb18a1.jpg",
       "linkPost": "/carpet-sofa-cleaning-services-how-5-star-cleaning-saves-you/",
       "category": "Lifestyle",
       "title": "Carpet Sofa Cleaning Services: How 5-Star Cleaning Saves You",
       "date": "Apr 3, 2025"
-    },
+    }
+  ],
+  "trending": [
     {
       "img": "https://openknowledge.worldbank.org/bitstream/handle/10986/9080/WDR2008_0036D.pdf.jpg?sequence=2u0026isAllowed=y",
       "linkPost": "/comparing-free-amp-premium-instagram-viewer-tools-what-s-the-difference/",
@@ -57,29 +50,36 @@
       "category": "Business",
       "title": "Understanding Hospital Bed Sizes and Types",
       "date": "Nov 12, 2024"
+    },
+    {
+      "img": null,
+      "linkPost": "/why-well-prepared-presentation-materials-matters/",
+      "category": "Business",
+      "title": "Why a Good Presentation Materials Matter in Business",
+      "date": "Jul 4, 2026"
     }
   ],
   "tags": [
-    "debt consolidation",
-    "loans for debt consolidation",
-    "SEO Company in Noida",
-    "Open Plots in Lam",
     "featured",
-    "Corteiz",
-    "spider hoodie",
-    "Diamond jacket",
-    "Saint Michael Clothing"
+    "employee monitoring",
+    "employee monitoring software",
+    "monitoring software",
+    "Time Tracking",
+    "Time Tracking Apps",
+    "Time Tracking Software",
+    "Employee Time Tracking Software",
+    "MC12CX1540"
   ],
   "categories": [
     {
       "name": "Business",
       "slug": "business",
-      "count": 221
+      "count": 203
     },
     {
       "name": "Lifestyle",
       "slug": "lifestyle",
-      "count": 105
+      "count": 94
     },
     {
       "name": "Technology",
@@ -89,7 +89,7 @@
     {
       "name": "Health",
       "slug": "health",
-      "count": 45
+      "count": 44
     }
   ]
 }

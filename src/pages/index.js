@@ -18,6 +18,7 @@ export default function Home({ data }) {
         title={SITE_NAME}
         description={`${SITE_NAME} publishes articles on business, lifestyle, technology and more. Browse the latest stories.`}
         path="/"
+        schemaType="collection"
       />
       <Layout>
         <Sec1 posts={data.hero} />

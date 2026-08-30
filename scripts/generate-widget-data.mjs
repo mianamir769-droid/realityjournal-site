@@ -34,10 +34,14 @@ function primaryCategory(categories) {
 
 const verifiedSlugs = new Set(fs.existsSync(VERIFIED_FILE) ? JSON.parse(fs.readFileSync(VERIFIED_FILE, 'utf-8')) : []);
 
+// Published only. The widgets render into every page's sidebar, so featuring
+// a draft here put a link to a page the build does not generate on all 517
+// pages at once. src/lib/posts.js applies the same filter.
 const allPosts = fs
   .readdirSync(POSTS_DIR)
   .filter((f) => f.endsWith('.json'))
   .map((f) => JSON.parse(fs.readFileSync(path.join(POSTS_DIR, f), 'utf-8')))
+  .filter((p) => p.status === 'publish')
   .sort((a, b) => new Date(b.date) - new Date(a.date));
 
 // Verified-image posts first (so the widgets show real photos where

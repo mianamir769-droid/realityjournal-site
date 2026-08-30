@@ -69,8 +69,12 @@ $colors: (
         1: $brand-accent-1,
         2: $brand-accent-2,
         3: #f2fbf9,
-        4: #fff6f3,
-        5: #fffefd,
+        // The two page-level tints. These were literal warm creams from the
+        // theme's pink/orange brand, so on any other palette the whole site
+        // carried a faint peach cast (bg-5 is the body background). Mixed
+        // from $brand-1 instead, so they follow a palette swap.
+        4: mix($brand-1, #ffffff, 4%),
+        5: mix($brand-1, #ffffff, 1%),
         opacity-90: rgba(255, 255, 255, 0.9),
     ),
     bg-dark: (

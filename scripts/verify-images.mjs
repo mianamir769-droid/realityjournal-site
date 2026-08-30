@@ -39,6 +39,9 @@ const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.json'));
 const candidates = [];
 for (const f of files) {
   const post = JSON.parse(fs.readFileSync(path.join(POSTS_DIR, f), 'utf-8'));
+  // Drafts never reach the build, so verifying their images wastes requests
+  // against the origin and can promote a draft into the image-led widgets.
+  if (post.status !== 'publish') continue;
   const img = extractFirstImage(post.contentHtml);
   if (img) candidates.push({ slug: post.slug, img });
 }

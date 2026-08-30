@@ -16,8 +16,20 @@ export default function PostArchive({ title, subtitle, posts, page, totalPages, 
     <>
       <Seo
         title={`${title}${pageSuffix}`}
-        description={subtitle ? `${subtitle}. ${totalPosts} articles.` : `${totalPosts} articles.`}
+        // The page number belongs in the description as well as the title:
+        // without it every page of /latest/ shipped the same 20 descriptions
+        // and every page of a category the same again.
+        description={
+          (subtitle ? `${subtitle}. ${totalPosts} articles.` : `${totalPosts} articles.`) +
+          (page > 1 ? ` Page ${page} of ${totalPages}.` : '')
+        }
         path={hrefFor(page)}
+        schemaType="collection"
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: title, url: hrefFor(1) },
+          ...(page > 1 ? [{ name: `Page ${page}`, url: hrefFor(page) }] : []),
+        ]}
       />
       <Layout header={2}>
         <Breadcrumb position="start" pageCurrent={breadcrumbCurrent || title} sub="" pageSubCurrent="" />
@@ -26,7 +38,10 @@ export default function PostArchive({ title, subtitle, posts, page, totalPages, 
           <div className="container">
             <div className="row align-items-end">
               <div className="col-md-8">
-                <h2 className="ds-5 mb-0">{title}</h2>
+                {/* The listing heading is this page's h1. It was an h2 in
+                    the template, leaving /latest/ and every category page
+                    without one. */}
+                <h1 className="ds-5 mb-0">{title}</h1>
                 {subtitle && <p className="mt-1 mb-0">{subtitle}</p>}
               </div>
               <div className="col-md-4 d-flex">

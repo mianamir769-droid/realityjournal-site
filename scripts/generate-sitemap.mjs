@@ -71,6 +71,11 @@ const urls = [];
       rel = rel.replace(/index\.html$/, '').replace(/\.html$/, '');
       const slug = rel.replace(/\/$/, '');
       if (excluded.has(slug)) continue;
+      // Also honour whatever the page itself rendered. Routes that are not
+      // posts (404, and anything else that sets noindex in its own <Seo>)
+      // are invisible to the post-driven exclusion list above, and listing a
+      // noindexed URL in the sitemap sends two opposite signals.
+      if (/<meta name="robots" content="[^"]*noindex/i.test(fs.readFileSync(full, 'utf-8'))) continue;
       const loc = rel === '' ? `${base}/` : `${base}/${rel}`;
       urls.push({ loc, lastmod: postDates.get(slug) });
     }

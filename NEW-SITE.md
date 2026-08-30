@@ -32,12 +32,16 @@ Paste the block at the bottom into a **new chat** to kick one off.
 6. Edit `src/lib/siteConfig.js` — name, email, domain, jurisdiction, year
 7. Apply the chosen palette — see below
 8. `npm run build` (sitemap + robots.txt are generated automatically)
-9. `git init`, set **repo-local** identity so the right GitHub account is used:
+9. `node scripts/seo-audit.mjs` - audits the built `out/` for missing or
+   duplicate titles and descriptions, canonical and sitemap disagreement,
+   missing h1s, broken internal links, orphan pages and absent schema.
+   Aim for zero error-level findings before pushing.
+10. `git init`, set **repo-local** identity so the right GitHub account is used:
    ```
    git config --local user.email "<that site's email>"
    git config --local credential.useHttpPath true
    ```
-10. Commit, create a **private** GitHub repo, push, connect Vercel
+11. Commit, create a **private** GitHub repo, push, connect Vercel
 
 ## Changing the colours
 

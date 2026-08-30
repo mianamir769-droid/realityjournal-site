@@ -24,6 +24,19 @@ import { XMLParser } from 'fast-xml-parser';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.join(__dirname, '..', 'src', 'content', 'posts');
+const PAGES_DIR = path.join(__dirname, '..', 'src', 'content', 'pages');
+
+// Read out of siteConfig.js as text rather than imported: this script runs
+// under plain node, outside Next's "@/" alias resolution.
+const SITE_NAME = (
+  fs.readFileSync(path.join(__dirname, '..', 'src', 'lib', 'siteConfig.js'), 'utf-8')
+    .match(/export const SITE_NAME\s*=\s*["']([^"']+)["']/) || []
+)[1] || '';
+
+// WordPress pages the codebase builds itself, from siteConfig rather than
+// from imported markup. Importing these too would give every site two
+// competing versions of the same URL.
+const OWN_PAGES = new Set(['home', 'about', 'contact', 'privacy-policy', 'terms']);
 
 const inputPath = process.argv[2];
 if (!inputPath) {
@@ -136,9 +149,19 @@ function wpautopLite(html) {
     .join('\n');
 }
 
+// A handful of imported bodies open with their own <h1> repeating the post
+// title. The page template already renders the title as the h1, so leaving
+// these in gives the page two or more competing top-level headings. Demoted
+// to h2, which is where they belong in the outline anyway.
+function demoteInlineH1(html) {
+  return String(html || '')
+    .replace(/<h1(\s[^>]*)?>/gi, (m, attrs) => '<h2' + (attrs || '') + '>')
+    .replace(/<\/h1>/gi, '</h2>');
+}
+
 function transformContent(raw) {
   const withCaptions = convertCaptionShortcodes(raw);
-  return wpautopLite(withCaptions);
+  return demoteInlineH1(wpautopLite(withCaptions));
 }
 
 function slugify(str) {
@@ -151,6 +174,28 @@ function slugify(str) {
 function toArray(v) {
   if (v === undefined || v === null) return [];
   return Array.isArray(v) ? v : [v];
+}
+
+// Rank Math stores its title/description fields as templates, so a post that
+// never had a custom title comes through as the literal string "%title%" or
+// "Something %sep% %sitename%". Rendering that verbatim publishes "%title% |
+// Reality Journal" as the page title, which is what 13 posts here were doing.
+// Resolved against the post's own values; anything still holding an
+// unresolved %variable% is discarded so the caller falls back to the real
+// title.
+function resolveRankMathVars(template, { title, siteName }) {
+  if (!template) return null;
+  const out = String(template)
+    .replace(/%title%/gi, title || '')
+    .replace(/%sitename%/gi, siteName || '')
+    .replace(/%sep%/gi, '|')
+    .replace(/%page%/gi, '')
+    .replace(/%currentyear%/gi, String(new Date().getFullYear()))
+    .replace(/\s{2,}/g, ' ')
+    .replace(/^[\s|-]+|[\s|-]+$/g, '')
+    .trim();
+  if (!out || /%[a-z_]+(\([^)]*\))?%/i.test(out)) return null;
+  return out;
 }
 
 // The site used the Rank Math SEO plugin, so the export carries real
@@ -173,8 +218,38 @@ function isNoindex(serialized) {
 }
 
 const posts = [];
+const pages = [];
+
 for (const item of items) {
   const postType = asText(item['wp:post_type']);
+
+  // Standalone WordPress pages that the theme does not already provide. Only
+  // published, indexable ones: a page Rank Math marked noindex is usually
+  // theme demo filler the owner never removed, and republishing it under a
+  // new domain is thin duplicate content.
+  if (postType === 'page') {
+    const pageSlug = slugify(asText(item['wp:post_name']));
+    const robots = getMeta(item, 'rank_math_robots');
+    if (
+      asText(item['wp:status']) === 'publish' &&
+      pageSlug &&
+      !OWN_PAGES.has(pageSlug) &&
+      !isNoindex(robots)
+    ) {
+      pages.push({
+        slug: pageSlug,
+        title: decodeEntities(asText(item.title)),
+        date: asText(item['wp:post_date']) || asText(item.pubDate),
+        link: asText(item.link),
+        seoTitle: resolveRankMathVars(getMeta(item, 'rank_math_title'), { title: decodeEntities(asText(item.title)), siteName: SITE_NAME }),
+        seoDescription: resolveRankMathVars(getMeta(item, 'rank_math_description'), { title: decodeEntities(asText(item.title)), siteName: SITE_NAME }),
+        canonicalUrl: getMeta(item, 'rank_math_canonical_url'),
+        contentHtml: transformContent(asText(item['content:encoded'])),
+      });
+    }
+    continue;
+  }
+
   if (postType !== 'post') continue;
 
   const status = asText(item['wp:status']);
@@ -209,6 +284,7 @@ for (const item of items) {
   }
 
   const rawContent = asText(item['content:encoded']);
+  const rmVars = { title: decodeEntities(asText(item.title)), siteName: SITE_NAME };
 
   posts.push({
     slug,
@@ -220,8 +296,8 @@ for (const item of items) {
     categories,
     tags,
     // Preserved Rank Math SEO fields (null when the post never had one set).
-    seoTitle: getMeta(item, 'rank_math_title'),
-    seoDescription: getMeta(item, 'rank_math_description'),
+    seoTitle: resolveRankMathVars(getMeta(item, 'rank_math_title'), rmVars),
+    seoDescription: resolveRankMathVars(getMeta(item, 'rank_math_description'), rmVars),
     canonicalUrl: getMeta(item, 'rank_math_canonical_url'),
     noindex: isNoindex(getMeta(item, 'rank_math_robots')),
     focusKeyword: getMeta(item, 'rank_math_focus_keyword'),
@@ -231,16 +307,31 @@ for (const item of items) {
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
+// Two WordPress posts can carry the same post_name - usually the same article
+// republished, as happened here 20 minutes apart. Only one of them can own the
+// permalink, so the later copies get a suffixed slug, and are pointed back at
+// the original with a canonical and kept out of the index: they are duplicate
+// content, not a second article.
 const seenSlugs = new Map();
 for (const post of posts) {
-  const count = seenSlugs.get(post.slug) || 0;
-  seenSlugs.set(post.slug, count + 1);
-  if (count > 0) post.slug = `${post.slug}-${count}`;
+  const original = post.slug;
+  const count = seenSlugs.get(original) || 0;
+  seenSlugs.set(original, count + 1);
+  if (count > 0) {
+    post.slug = `${original}-${count}`;
+    post.duplicateOf = original;
+    post.noindex = true;
+  }
 }
 
 for (const post of posts) {
   const file = path.join(OUT_DIR, `${post.slug}.json`);
   fs.writeFileSync(file, JSON.stringify(post, null, 2), 'utf-8');
+}
+
+fs.mkdirSync(PAGES_DIR, { recursive: true });
+for (const page of pages) {
+  fs.writeFileSync(path.join(PAGES_DIR, `${page.slug}.json`), JSON.stringify(page, null, 2), 'utf-8');
 }
 
 const dupes = [...seenSlugs.entries()].filter(([, n]) => n > 1);
@@ -255,3 +346,4 @@ const byStatus = posts.reduce((acc, p) => {
 
 console.log(`Imported ${posts.length} posts into ${path.relative(process.cwd(), OUT_DIR)}`);
 console.log('By status:', byStatus);
+console.log(`Imported ${pages.length} page(s) into ${path.relative(process.cwd(), PAGES_DIR)}:`, pages.map((p) => p.slug).join(', ') || '(none)');
