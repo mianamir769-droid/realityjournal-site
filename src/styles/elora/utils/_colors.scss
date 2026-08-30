@@ -1,0 +1,90 @@
+// ---------------------------------------------------------------------------
+// BRAND PALETTE - the only colours that differ between sites.
+//
+// To re-skin a site, change these four values and run:
+//     node scripts/generate-favicon.mjs
+//
+// Everything else (logo, buttons, links, badges, hover states, headings,
+// underlines, checkmarks) derives from them via the --tc-brand-* and
+// --tc-linear-* CSS variables. There are no brand hex values anywhere else
+// in the codebase.
+//
+// $brand-1 / $brand-2 are the two stops of the brand gradient; keep $brand-1
+// dark enough that white button text stays readable on it.
+// $brand-accent-* are the flat accent fills.
+// ---------------------------------------------------------------------------
+$brand-1: #4338ca;
+$brand-2: #7c3aed;
+$brand-accent-1: #4f46e5;
+$brand-accent-2: #8b5cf6;
+
+$colors: (
+    brand: (
+        1: $brand-1,
+        2: $brand-2,
+    ),
+    neutral: (
+        50: #f1f2f3,
+        100: #eeeaea,
+        200: #ebe5e5,
+        300: #dbd1d1,
+        400: #afa7a7,
+        500: #7d7575,
+        600: #686262,
+        700: #3d3a3a,
+        800: #141313,
+        900: #0d0d0d,
+    ),
+    neutral-dark: (
+        50: #2d2d2d,
+        100: #181818,
+        200: #454444,
+        300: #343434,
+        400: #565656,
+        500: #727272,
+        600: #aea7a7,
+        700: #dbd1d1,
+        800: #ebe5e5,
+        900: #f6f3f3,
+    ),
+    system: (
+        white: #ffffff,
+        success: #64e1b0,
+        info: #5577a7,
+        warning: #f39e0d,
+        danger: #ec4040,
+        dark: #000000,
+        muted: #9ca3af,
+    ),
+    system-dark: (
+        white: #222324,
+        success: #10b983,
+        info: #0f172e,
+        warning: #fcd34e,
+        danger: #fca5a7,
+        dark: #efeff8,
+        muted: #9ca3af,
+    ),
+    bg: (
+        1: $brand-accent-1,
+        2: $brand-accent-2,
+        3: #f2fbf9,
+        4: #fff6f3,
+        5: #fffefd,
+        opacity-90: rgba(255, 255, 255, 0.9),
+    ),
+    bg-dark: (
+        1: #1c1b1f,
+        2: #1e1c25,
+        3: #1e1f1e,
+        4: #212020,
+        5: #252424,
+        opacity-90: rgba(13, 13, 13, 0.68),
+    ),
+    linear: (
+        1: linear-gradient(90deg, #{$brand-1} 0%, #{$brand-2} 100%),
+    ),
+    shadow: (
+        1: 0px 20px 60px 0px rgba(0, 0, 0, 0.08),
+    ),
+);

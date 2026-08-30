@@ -1,0 +1,465 @@
+/*=============================
+	Typography css start
+===============================*/
+body {
+    font-family: var(--tc-body-font-family);
+    font-size: var(--tc-body-font-size);
+    font-weight: var(--tc-fw-regular);
+    color: var(--tc-neutral-600);
+    line-height: var(--tc-body-line-height);
+    background-color: var(--tc-bg-5);
+}
+.font-body {
+    font-family: var(--tc-body-font-family);
+}
+.fs-10 {
+    font-size: 10px;
+}
+.fs-18 {
+    font-size: 18px;
+}
+.fs-22 {
+    font-size: 22px;
+}
+.fs-1 {
+    font-size: var(--tc-fs-1);
+}
+.fs-2 {
+    font-size: var(--tc-fs-2);
+}
+.fs-3 {
+    font-size: var(--tc-fs-3);
+}
+.fs-4 {
+    font-size: var(--tc-fs-4);
+}
+.fs-5 {
+    font-size: var(--tc-fs-5) !important;
+}
+.fs-6 {
+    font-size: var(--tc-fs-6);
+}
+.fs-7 {
+    font-size: var(--tc-fs-7);
+}
+.fs-8 {
+    font-size: var(--tc-fs-8);
+}
+.ds-1 {
+    font-size: var(--tc-ds-1);
+}
+.ds-2 {
+    font-size: var(--tc-ds-2);
+}
+.ds-3 {
+    font-size: var(--tc-ds-3);
+}
+.ds-4 {
+    font-size: var(--tc-ds-4);
+}
+.ds-5 {
+    font-size: var(--tc-ds-5);
+}
+.ds-6 {
+    font-size: var(--tc-ds-6);
+}
+.ds-xs-1 {
+    font-size: var(--tc-ds-xs-1);
+}
+.ds-xs-2 {
+    font-size: var(--tc-ds-xs-2);
+}
+.ds-xs-3 {
+    font-size: var(--tc-ds-xs-3);
+}
+.ds-xs-4 {
+    font-size: var(--tc-ds-xs-4);
+}
+.ds-xs-5 {
+    font-size: var(--tc-ds-xs-5);
+}
+.ds-xs-6 {
+    font-size: var(--tc-ds-xs-6);
+}
+// Font Weight
+.fw-light {
+    font-weight: var(--tc-fw-light) !important;
+}
+.fw-regular {
+    font-weight: var(--tc-fw-regular) !important;
+}
+.fw-medium {
+    font-weight: var(--tc-fw-medium) !important;
+}
+.fw-semi-bold {
+    font-weight: var(--tc-fw-semi-bold) !important;
+}
+.fw-bold {
+    font-weight: var(--tc-fw-bold) !important;
+}
+.fw-extra-bold {
+    font-weight: var(--tc-fw-extra-bold) !important;
+}
+.fw-black {
+    font-weight: var(--tc-fw-black) !important;
+}
+.fw .size-16 {
+    width: 16px;
+    height: 16px;
+}
+.size-14 {
+    width: 14px;
+    height: 14px;
+}
+.size-12 {
+    width: 12px;
+    height: 12px;
+}
+.size-22 {
+    width: 22px;
+    height: 22px;
+}
+.size-24 {
+    width: 24px;
+    height: 24px;
+}
+.size-40 {
+    width: 40px;
+    height: 40px;
+}
+.size-48 {
+    width: 48px;
+    height: 48px;
+}
+.size-50 {
+    width: 50px;
+    height: 50px;
+}
+.size-70 {
+    width: 70px;
+    height: 70px;
+}
+.size-75 {
+    width: 75px;
+    height: 75px;
+}
+.size-80 {
+    width: 80px;
+    height: 80px;
+}
+.size-98 {
+    width: 98px;
+    height: 98px;
+}
+.size-120 {
+    width: 120px;
+    height: 120px;
+}
+.size-155 {
+    width: 155px;
+    height: 155px;
+}
+.shadow-1 {
+    box-shadow: var(--tc-shadow-1);
+}
+.rounded-pill {
+    border-radius: 50%;
+}
+
+.fst-italic {
+    font-style: italic !important;
+}
+.text-start {
+    text-align: left !important;
+}
+.text-end {
+    text-align: right !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.text-decoration-none {
+    text-decoration: none !important;
+}
+.text-decoration-underline {
+    text-decoration: underline !important;
+}
+.text-decoration-line-through {
+    text-decoration: line-through !important;
+}
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+.text-wrap {
+    white-space: normal !important;
+}
+.text-nowrap {
+    white-space: nowrap !important;
+}
+
+.text-dark {
+    color: var(--tc-neutral-900) !important;
+}
+.text-50 {
+    color: var(--tc-neutral-50) !important;
+}
+.text-100 {
+    color: var(--tc-neutral-100) !important;
+}
+.text-200 {
+    color: var(--tc-neutral-200) !important;
+}
+.text-300 {
+    color: var(--tc-neutral-300) !important;
+}
+.text-400 {
+    color: var(--tc-neutral-400) !important;
+}
+.text-500 {
+    color: var(--tc-neutral-500) !important;
+}
+.text-600 {
+    color: var(--tc-neutral-600) !important;
+}
+.text-700 {
+    color: var(--tc-neutral-700) !important;
+}
+.text-800 {
+    color: var(--tc-neutral-800) !important;
+}
+.text-900 {
+    color: var(--tc-neutral-900) !important;
+}
+.text-white {
+    color: var(--tc-system-white) !important;
+}
+.text-danger {
+    color: var(--tc-system-danger) !important;
+}
+.text-warning {
+    color: var(--tc-system-warning) !important;
+}
+.text-info {
+    color: var(--tc-system-info) !important;
+}
+.text-success {
+    color: var(--tc-system-success) !important;
+}
+.text-linear {
+    background: var(--tc-linear-1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.product-color-red {
+    background: var(--tc-system-danger);
+}
+
+.product-color-yellow {
+    background: var(--tc-system-warning);
+}
+
+.product-color-white {
+    background: var(--tc-system-white);
+}
+
+.product-color-orange {
+    background: var(--tc-system-warning);
+}
+
+.product-color-cyan {
+    background: var(--tc-system-info);
+}
+
+.product-color-green {
+    background: var(--tc-system-success);
+}
+
+.product-color-purple {
+    background: var(--tc-system-info);
+}
+
+.lh-110 {
+    line-height: 110%;
+}
+.w-fit-content {
+    width: fit-content;
+}
+/* Text Truncation */
+
+.text-truncate-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 1.5em;
+}
+
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3em;
+}
+
+.text-truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4.5em;
+}
+.text-truncate-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 6em;
+}
+img,
+.img {
+    max-width: 100%;
+    vertical-align: middle;
+    transition: 0.3s;
+}
+a,
+button {
+    color: var(--tc-neutral-900);
+    outline: none;
+    text-decoration: none;
+    transition: 0.3s;
+}
+a:focus,
+.btn:focus,
+.button:focus {
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+}
+button:focus,
+input:focus,
+input:focus,
+textarea,
+textarea:focus {
+    outline: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--tc-heading-font-family);
+    color: var(--tc-neutral-900);
+    margin-top: 0px;
+    font-weight: var(--tc-fw-semi-bold);
+    line-height: var(--tc-heading-line-height);
+    text-transform: unset;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    color: inherit;
+}
+h1 {
+    font-size: 56px;
+}
+h2 {
+    font-size: 42px;
+}
+h3 {
+    font-size: 34px;
+}
+h4 {
+    font-size: 27px;
+}
+h5 {
+    font-size: 22px;
+}
+h6 {
+    font-size: 18px;
+}
+.list-wrap {
+    margin: 0px;
+    padding: 0px;
+    & li {
+        list-style: none;
+    }
+}
+p {
+    font-family: var(--tc-body-font-family);
+    font-size: var(--tc-body-font-size);
+    line-height: var(--tc-body-line-height);
+    font-weight: var(--tc-fw-regular);
+    color: var(--tc-neutral-600);
+    margin-bottom: 15px;
+}
+hr {
+    border-bottom: 1px solid var(--tc-gray-1);
+    border-top: 0 none;
+    margin: 30px 0;
+    padding: 0;
+}
+label {
+    color: var(--tc-neutral-700);
+    cursor: pointer;
+    font-size: var(--tc-body-font-size);
+    font-weight: var(--tc-fw-regular);
+}
+input[type='color'] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    border-radius: 50%;
+}
+/*=============================
+    - Input Placeholder
+===============================*/
+input,
+textarea {
+    color: var(--tc-neutral-600);
+}
+*::-moz-placeholder {
+    color: var(--tc-neutral-600);
+    font-size: var(--tc-body-font-size);
+    opacity: 1;
+}
+*::placeholder {
+    color: var(--tc-neutral-600);
+    font-size: var(--tc-body-font-size);
+    opacity: 1;
+}
+.form-select {
+    display: flex;
+    height: 45px;
+    padding: 12px 33px 12px 21px;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid var(--tc-neutral-200);
+    background: var(--tc-system-white);
+    max-width: 180px;
+}
+/*=============================
+    - Common Classes
+===============================*/

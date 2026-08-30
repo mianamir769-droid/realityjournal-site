@@ -1,0 +1,207 @@
+// `xxl` applies to x-large devices (large desktops, less than 1400px)
+@media screen and (max-width: 1399.98px) {
+}
+
+// `xl` applies to large devices (desktops, less than 1200px)
+@media screen and (max-width: 1199.98px) {
+    .w-md-75 {
+        width: 75%;
+    }
+}
+
+// `lg` applies to medium devices (tablets, less than 992px)
+@media screen and (max-width: 991.98px) {
+    h1 {
+        font-size: 48px;
+    }
+    h2 {
+        font-size: 38px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+    h4 {
+        font-size: 22px;
+    }
+    h5 {
+        font-size: 20px;
+    }
+    h6 {
+        font-size: 16px;
+    }
+    p {
+        font-size: 12px;
+    }
+    .ds-1 {
+        font-size: 64px;
+    }
+    .ds-2 {
+        font-size: 54px;
+    }
+
+    .ds-3 {
+        font-size: 44px;
+    }
+
+    .ds-4 {
+        font-size: 42px;
+    }
+
+    .ds-6 {
+        font-size: 34px;
+    }
+
+    .pb-300 {
+        padding-bottom: 250px;
+    }
+
+    .sec-1-home-1 {
+        padding-top: 100px;
+        padding-bottom: 40px;
+        background-position: top center;
+        background-repeat: no-repeat;
+    }
+    .card-portfolio.card-1 {
+        padding-bottom: 25%;
+    }
+}
+
+// `md` applies to small devices (landscape phones, less than 768px)
+@media screen and (max-width: 767.98px) {
+}
+
+// `sm` applies to x-small devices (portrait phones, less than 576px)
+@media screen and (max-width: 575.98px) {
+}
+
+// `xs` applies to x-small devices (portrait phones, less than 475px)
+@media screen and (max-width: 474.98px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 22px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    h6 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    .fs-3 {
+        font-size: 22px;
+    }
+
+    .fs-4 {
+        font-size: 16px;
+    }
+
+    .fs-5 {
+        font-size: 14px;
+    }
+
+    .fs-8 {
+        font-size: 10px;
+    }
+
+    .fs-18 {
+        font-size: 14px;
+    }
+
+    .ds-1 {
+        font-size: 36px;
+    }
+
+    .ds-2 {
+        font-size: 30px;
+    }
+
+    .ds-3 {
+        font-size: 28px;
+    }
+
+    .ds-4 {
+        font-size: 25px;
+    }
+
+    .ds-5 {
+        font-size: 38px;
+    }
+
+    .ds-6 {
+        font-size: 24px;
+    }
+    .w-md-75 {
+        width: 100%;
+    }
+
+    .sidebar-left {
+        max-width: 370px;
+        width: 370px;
+        padding: 0 20px;
+    }
+
+    .pb-300 {
+        padding-bottom: 150px;
+    }
+
+    .sec-padding {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .form-control {
+        padding: 12px 22px;
+    }
+    .btn {
+        padding: 13px 30px;
+        gap: 7px;
+    }
+    .block-newsletter {
+        padding: 40px 20px;
+    }
+    :root {
+        --tc-body-font-size: 12px;
+    }
+    .table td {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .table td::before {
+        content: attr(data-title) ' ';
+        float: left;
+        text-transform: capitalize;
+        margin-right: 15px;
+        font-weight: bold;
+    }
+    .table thead {
+        display: none;
+    }
+    .sort-by-product-wrap {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+// `lg` applies to medium devices (PC, bigger than 992px)
+@media screen and (min-width: 992px) {
+    .position-lg-absolute {
+        position: absolute !important;
+    }
+}

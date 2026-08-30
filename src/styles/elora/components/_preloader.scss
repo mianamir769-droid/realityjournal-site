@@ -1,0 +1,109 @@
+/*=============================
+Preloader
+===============================*/
+#preloader {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    margin-top: 0px;
+    top: 0px;
+    z-index: 9999;
+    background-color: var(--tc-system-white);
+
+    & .loader {
+
+        .loader-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 120px;
+            text-align: center;
+        }
+
+        & .loader-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            text-align: center;
+
+            & img {
+                animation: loaderpulse alternate 900ms infinite;
+                width: 60px;
+            }
+        }
+    }
+
+    &.black-bg,
+    &.black2-bg {
+        .loader-container {
+            border: 3px solid #1a1a1a;
+        }
+
+        .loader-icon {
+            filter: brightness(99) grayscale(9);
+        }
+    }
+}
+
+@keyframes loaderspin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@-webkit-keyframes loaderspin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes loaderpulse {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+
+.loader-2 {
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: l2 1s infinite linear alternate;
+}
+
+@keyframes l2 {
+    0% {
+        box-shadow: 20px 0 #000, -20px 0 #0002;
+        background: #000
+    }
+
+    33% {
+        box-shadow: 20px 0 #000, -20px 0 #0002;
+        background: #0002
+    }
+
+    66% {
+        box-shadow: 20px 0 #0002, -20px 0 #000;
+        background: #0002
+    }
+
+    100% {
+        box-shadow: 20px 0 #0002, -20px 0 #000;
+        background: #000
+    }
+}
