@@ -28,6 +28,11 @@ const PAGES_DIR = path.join(__dirname, '..', 'src', 'content', 'pages');
 
 // Read out of siteConfig.js as text rather than imported: this script runs
 // under plain node, outside Next's "@/" alias resolution.
+const SITE_URL = (
+  fs.readFileSync(path.join(__dirname, '..', 'src', 'lib', 'siteConfig.js'), 'utf-8')
+    .match(/export const SITE_URL\s*=\s*["']([^"']+)["']/) || []
+)[1] || '';
+
 const SITE_NAME = (
   fs.readFileSync(path.join(__dirname, '..', 'src', 'lib', 'siteConfig.js'), 'utf-8')
     .match(/export const SITE_NAME\s*=\s*["']([^"']+)["']/) || []
@@ -159,9 +164,38 @@ function demoteInlineH1(html) {
     .replace(/<\/h1>/gi, '</h2>');
 }
 
+// Imported bodies carry images hotlinked from wherever the original author
+// found them - stock libraries, Pinterest, other people's blogs. Serving those
+// under this domain publishes photographs with no licence to them, from
+// servers that can block or delete at any time.
+//
+// Only off-domain images are removed. Images on the site's own domain are
+// kept even when they are currently 404ing, because those are the ones that
+// come back as soon as the real uploads are restored - deleting them would
+// throw away the markup that makes that work.
+//
+// A figure is removed whole rather than leaving its caption orphaned.
+function stripOffDomainImages(html) {
+  const ownHost = (() => {
+    try { return new URL(SITE_URL).host.replace(/^www\./, '').toLowerCase(); } catch { return null; }
+  })();
+  const isOwn = (src) => {
+    try { return new URL(src).host.replace(/^www\./, '').toLowerCase() === ownHost; } catch { return false; }
+  };
+  const srcOf = (tag) => (tag.match(/src="([^"]+)"/) || [])[1] || '';
+
+  return String(html || '')
+    .replace(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi, (block) => {
+      const img = block.match(/<img\b[^>]*>/i);
+      if (!img) return block;
+      return isOwn(srcOf(img[0])) ? block : '';
+    })
+    .replace(/<img\b[^>]*>/gi, (tag) => (isOwn(srcOf(tag)) ? tag : ''));
+}
+
 function transformContent(raw) {
   const withCaptions = convertCaptionShortcodes(raw);
-  return demoteInlineH1(wpautopLite(withCaptions));
+  return stripOffDomainImages(demoteInlineH1(wpautopLite(withCaptions)));
 }
 
 function slugify(str) {
